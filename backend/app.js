@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const todoRoutes = require("./routes/todoRoutes");
-const routes = require("./routes/getRoutes");
-const userRoutes = require("./routes/userRoutes");
+const todoRoutes = require("./routes/todoRoutes.js");
+const routes = require("./routes/getRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const { Server } = require("socket.io");
