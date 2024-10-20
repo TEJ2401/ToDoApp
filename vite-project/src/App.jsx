@@ -36,8 +36,6 @@ function App() {
   };
 
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
-    console.log(token);
     if (localStorage.getItem("token")) {
       fetchTodos();
       const newSocket = io("http://localhost:5000", options);
@@ -52,11 +50,12 @@ function App() {
         });
       });
       newSocket.on("todoUpdated", (data) => {
-        console.log("TASK UPDATED", data.length);
+        console.log("TASK UPDATED", data);
         toast.success("Task Updated Successfully!", {
           duration: 4000,
           position: "top-right",
-        });
+        }); // Call the toast notification here
+        fetchTodos(); // Optionally refresh the todo list on update
       });
       newSocket.on("deletetodo", () => {
         toast.error("Task Deleted Successfully!", {
@@ -146,28 +145,30 @@ function App() {
     }
   };
 
-  const LoginWrapper = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    if (socket) {
+      socket.disconnect(); // Disconnect socket on logout
+    }
+    setTodos([]);
+  };
+
+  function LoginWrapper() {
     const navigate = useNavigate();
 
     const handleLogin = async (email, password) => {
       try {
         const response = await axios.post(
           "http://localhost:5000/api/users/login",
-          {
-            email,
-            password,
-          }
+          { email, password }
         );
         localStorage.setItem("token", response.data.token);
-        setToken(localStorage.getItem("token"));
-        navigate("/todos"); // Ensure the todos are fetched immediately
-        // Redirect to the Todo page after successful login
+        setToken();
+        fetchTodos();
+        navigate("/todos");
       } catch (error) {
         console.error("Login error:", error);
-        toast.error("Invalid credentials. Please try again.", {
-          duration: 4000,
-          position: "top-right",
-        });
       }
     };
 
@@ -185,80 +186,67 @@ function App() {
     };
 
     return <Authform onLogin={handleLogin} onRegister={handleRegister} />;
-  };
-
-  const TodoWrapper = () => {
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-      localStorage.removeItem("token");
-      navigate("/login"); // Redirect to login page
-    };
-
-    return (
-      <div className="content-wrapper">
-        <h1>Todo List</h1>
-        <button className="logout-btn" onClick={handleLogout}>
-          Logout
-        </button>
-        <div className="search-container">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search todos"
-            className="search-input"
-          />
-          <select
-            value={filterCompleted}
-            onChange={(e) => setFilterCompleted(e.target.value)}
-            className="filter-select"
-          >
-            <option value="">All</option>
-            <option value="true">Completed</option>
-            <option value="false">Incomplete</option>
-          </select>
-          <select
-            value={filterPriority}
-            onChange={(e) => setFilterPriority(e.target.value)}
-            className="filter-select"
-          >
-            <option value="">All Priorities</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          <button className="search-btn" onClick={handleSearch}>
-            Search
-          </button>
-        </div>
-        <Todoform addTodo={addTodo} />
-        <Todolist
-          todos={todos}
-          updateTodo={updateTodo}
-          deleteTodo={deleteTodo}
-        />
-      </div>
-    );
-  };
+  }
 
   return (
     <Router>
       <div className="App">
         <Toaster />
         <Routes>
-          <Route path="/auth" element={<LoginWrapper />} />
+          <Route path="/login" element={<LoginWrapper />} />
           <Route
             path="/todos"
             element={
-              token || localStorage.getItem("token") ? (
-                <TodoWrapper />
+              localStorage.getItem("token") ? (
+                <>
+                  <h1>Todo List</h1>
+                  <button className="logout-btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                  <div className="search-container">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search todos"
+                      className="search-input"
+                    />
+                    <select
+                      value={filterCompleted}
+                      onChange={(e) => setFilterCompleted(e.target.value)}
+                      className="filter-select"
+                    >
+                      <option value="">All</option>
+                      <option value="true">Completed</option>
+                      <option value="false">Incomplete</option>
+                    </select>
+                    <select
+                      value={filterPriority}
+                      onChange={(e) => setFilterPriority(e.target.value)}
+                      className="filter-select"
+                    >
+                      <option value="">All Priorities</option>
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                    <button className="search-btn" onClick={handleSearch}>
+                      Search
+                    </button>
+                  </div>
+                  <Todoform addTodo={addTodo} />
+                  <Todolist
+                    todos={todos}
+                    updateTodo={updateTodo}
+                    deleteTodo={deleteTodo}
+                  />
+                </>
               ) : (
-                <Navigate to="/auth" />
+                <Navigate to="/login" />
               )
             }
           />
-          <Route path="*" element={<Navigate to="/auth" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
