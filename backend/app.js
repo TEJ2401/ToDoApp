@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost/27017", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
