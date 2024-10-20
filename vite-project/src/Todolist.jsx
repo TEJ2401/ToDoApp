@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 // TodoItemList Component
 import React from "react";
-import TodoItem from "./Todoitem"; // Importing the TodoItem component
-import "./Todoitem.css"; // Import the CSS file
+import Todoitem from "./Todoitem"; // Importing the TodoItem component
+import "./TodoItem.css"; // Import the CSS file
 
 function Todolist({ todos, updateTodo, deleteTodo }) {
   return (
