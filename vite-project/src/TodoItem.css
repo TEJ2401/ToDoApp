@@ -1,0 +1,184 @@
+.todo-list-wrapper {
+  width: 100%;
+  max-width: 700px; /* Adjust this to fit your design */
+  margin: 20px auto;
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem; /* Adjust padding as necessary */
+  font-weight: bold;
+  background-color: #f0f0f0; /* Light background for contrast */
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-header span {
+  flex: 1; /* Equal space for each header */
+  text-align: center; /* Center align text */
+}
+
+.header-task {
+  flex: 2; /* Make Task header wider */
+  text-align: left; /* Align text to the left */
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.todo-item:hover {
+  transform: translateY(-3px);
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-content {
+  flex: 1; /* Allow content to take available space */
+  display: flex; /* Enable flex for spacing */
+  justify-content: space-between; /* Evenly space out items */
+  margin-left: 5;
+  margin-right: 10;
+}
+
+.todo-details {
+  display: flex; /* Enable flex for details */
+  flex: 1; /* Allow details to take available space */
+  margin-left: 5px;
+}
+
+.todo-text {
+  flex: 1; /* Task field takes space */
+  text-align: center; /* Center align the text */
+  margin: 0 15px; /* Maintain margin */
+}
+
+.priority {
+  flex: 1; /* Priority field takes space */
+  text-align: center; /* Center align the text */
+  margin: 0 10px; /* Decrease right margin slightly to shift left */
+}
+
+.due-date {
+  flex: 1; /* Due Date field takes space */
+  text-align: center; /* Center align the text */
+  margin: 0 10px; /* Decrease right margin slightly to shift left */
+}
+
+.todo-item .priority {
+  padding: 0.25rem 0.5rem; /* Maintain padding for priority */
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.priority-low {
+  color: #4caf50;
+  background-color: #e8f5e9;
+}
+
+.priority-medium {
+  color: #ff9800;
+  background-color: #fff3e0;
+}
+
+.priority-high {
+  color: #f44336;
+  background-color: #ffebee;
+}
+
+.due-date {
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-actions button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.todo-actions button:hover {
+  color: #007bff;
+}
+
+.complete-btn {
+  color: #4caf50;
+}
+
+.edit-btn {
+  color: #ffc107;
+}
+
+.delete-btn {
+  color: #f44336;
+}
+
+/* Icons */
+.todo-actions button.complete-btn::before {
+  font-size: 1.2rem;
+}
+
+.todo-actions button.edit-btn::before {
+  font-size: 1.2rem;
+}
+
+.todo-actions button.delete-btn::before {
+  font-size: 1.2rem;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  padding: 0.5rem;
+  margin-right: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+.header-priority {
+  margin-left: 45px;
+}
+.header-due-date {
+  margin-left: 35px;
+}
+.header-task {
+  margin-left: 25px;
+}

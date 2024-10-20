@@ -1,0 +1,81 @@
+.todo-form {
+  display: flex;
+  flex-direction: column; /* Stack inputs vertically */
+  gap: 10px; /* Space between elements */
+  max-width: 400px; /* Set a max width for the form */
+  margin: 20px auto; /* Center the form */
+}
+
+.todo-form input[type="text"],
+.todo-form select,
+.todo-form input[type="date"] {
+  width: 100%; /* Full width */
+  padding: 0.5rem; /* Add some padding */
+  border: 1px solid #ddd; /* Border style */
+  border-radius: 8px; /* Rounded corners */
+  outline: none; /* Remove outline on focus */
+}
+
+.todo-form input[type="text"]:focus,
+.todo-form select:focus,
+.todo-form input[type="date"]:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+}
+
+.todo-form button {
+  padding: 0.5rem 1rem; /* Padding for the button */
+  border: none; /* No border */
+  background-color: #007bff; /* Button color */
+  color: white; /* Text color */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.2s; /* Smooth transition */
+}
+
+.todo-form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+.todo-form {
+  display: flex;
+  justify-content: space-between; /* Space elements evenly */
+  align-items: center; /* Center align items vertically */
+  gap: 10px; /* Space between form elements */
+  margin: 20px 0; /* Space above and below the form */
+}
+
+.form-group {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between inputs */
+  flex: 1; /* Allow the form group to grow */
+}
+
+.form-input,
+.form-select {
+  width: 100%; /* Make inputs full width */
+  padding: 0.5rem; /* Add padding */
+  border: 1px solid #ddd; /* Border style */
+  border-radius: 8px; /* Rounded corners */
+  outline: none; /* Remove outline on focus */
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+}
+
+.form-btn {
+  padding: 0.5rem 1rem; /* Button padding */
+  border: none; /* No border */
+  background-color: #007bff; /* Button color */
+  color: white; /* Button text color */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.2s; /* Smooth transition */
+}
+
+.form-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
