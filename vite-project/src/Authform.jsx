@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { React, useState, useEffect } from "react";
 import "./Authform.css"; // Importing the CSS file
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useLocation } from "react-router-dom";
 
 function Authform({ onLogin, onRegister }) {
@@ -24,14 +23,11 @@ function Authform({ onLogin, onRegister }) {
 
     if (isLogin) {
       onLogin(email, password);
-      toast.success("Login successful!", { position: "top-center" });
     } else {
       if (username.length < 3) {
-        toast.error("Username must be at least 3 characters long.");
         return;
       }
       onRegister(username, email, password);
-      toast.success("Registration successful!", { position: "top-center" });
     }
   };
 
@@ -74,7 +70,6 @@ function Authform({ onLogin, onRegister }) {
           {isLogin ? "Need to register?" : "Already have an account?"}
         </button>
       </div>
-      <ToastContainer />
     </div>
   );
 }
